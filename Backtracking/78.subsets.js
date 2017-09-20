@@ -19,7 +19,7 @@ var subsets = function(nums) {
 };
 
 function recursionHelper(nums, startIndex, currSol, res) {
-	res.push(currSol.slice(0));
+	res.push(currSol.slice());
 
 	for(let i = startIndex, len = nums.length; i < len; i++) {
 		currSol.push(nums[i]);
