@@ -22,9 +22,8 @@ var maximalSquare = function(matrix) {
 
 	for(let i = 0; i < xLen; i++) {
 		d[i] = [];
-
 		for(let j = 0; j < yLen; j++) {
-			if(matrix[i][j] === '1') {
+			if (matrix[i][j] === '1') {
 				d[i][j] = 1;
 				max = 1;
 			} else {
@@ -35,18 +34,11 @@ var maximalSquare = function(matrix) {
 
 	for(let i = 1; i < xLen; i++) {
 		for(let j = 1; j < yLen; j++) {
-
-			if(matrix[i - 1][j - 1] === '1' && matrix[i][j - 1] === '1' && matrix[i - 1][j] === '1' && matrix[i][j] === '1') {
-				if(d[i - 1][j - 1] !== 0 && d[i - 1][j - 1] === d[i - 1][j] && d[i - 1][j - 1] === d[i][j - 1]) {
-					d[i][j] = d[i - 1][j - 1] + 1;
-				} else {
-					d[i][j] = 2;
-				}
-
-				if(d[i][j] > max) {
-					max = d[i][j];
-				}
+			if (matrix[i][j] === '1') {
+				d[i][j] = Math.min(d[i - 1][j - 1], d[i - 1][j], d[i][j - 1]) + 1;
 			}
+
+			max = Math.max(max, d[i][j]);
 		}
 	}
 
