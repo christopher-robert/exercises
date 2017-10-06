@@ -36,6 +36,17 @@
  *     };
  * };
  */
+/*
+	Test cases:
+
+	// console.log(deserialize("[-1, -2]"));
+	// console.log(deserialize("[]"));
+	// console.log(deserialize("[-1]"));
+	// console.log(deserialize("324"));
+	// console.log(deserialize("-324"));
+	// console.log(deserialize("[123,[456,[789]]]"));
+*/
+
 /**
  * @param {string} s
  * @return {NestedInteger}
@@ -63,7 +74,7 @@ var deserialize = function(s) {
 	let res = new NestedInteger();
 
 	for(let i = 0, len = s.length; i < len;) {
-		if(s[i] >= '1' && s[i] <= '9' || s[i] === '-') {
+		if(s[i] >= '0' && s[i] <= '9' || s[i] === '-') {
 			let start = i;
 
 			while(s[i] !== ',' && i < len) {
@@ -71,7 +82,7 @@ var deserialize = function(s) {
 			}
 			res.setInteger(Number(s.slice(start, i)));
 		} else if (s[i] === '[') {
-			let start = i + 1;
+			let start = i;
 			let level = 1;
 			i++;
 			while(level > 0 && i < len) {
@@ -84,13 +95,13 @@ var deserialize = function(s) {
 				}
 
 				i++;
+				let list = s.slice(start, i);
+
+				if(list.length !== 0) {
+					res.add(deserialize(list));
+				}
 			}
 
-			let list = s.slice(start, i - 1);
-
-			if(list.length !== 0) {
-				res.add(deserialize(list));
-			}
 		} else {
 			i++;
 		}
