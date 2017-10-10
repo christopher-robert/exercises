@@ -92,7 +92,7 @@ function findSchedule(schedules) {
 	// There is only case
 	let res = [];
 
-	for(let i = 0, len = timeTable.length; i < len - 1; i++) {
+	for(let i = 0, len = timeTable.length - 1; i < len; i++) {
 		if(timeTable[i][1] < timeTable[i + 1][0]) {
 			res.push([timeTable[i][1], timeTable[i + 1][0]]);
 		} 

@@ -3,6 +3,17 @@
  * @param {string} p
  * @return {boolean}
  */
+
+ /*
+
+	console.log(isMatch("aa","aa"));
+	console.log(isMatch("aaa","a?"));
+	console.log(isMatch("aa", "a*"));
+	console.log(isMatch("aa", "?*"));
+	console.log(isMatch("aab", "c*a*b"));
+
+ */
+ 
 var isMatch = function(s, p) {
 	let d = [];
 	let sLen = s.length;
@@ -20,6 +31,7 @@ var isMatch = function(s, p) {
 
 	d[0][0] = true;
 
+	// only ***** works for empty string
 	for(let i = 1; i <= pLen; i++) {
 		if(p[i - 1] === '*' && d[0][i - 1]) {
 			d[0][i] = true;

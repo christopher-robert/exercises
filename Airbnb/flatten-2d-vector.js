@@ -91,6 +91,6 @@ function VectorItertor(vector) {
 			x--;
 		}
 
-		return false;
+		return true;
 	}
 }

@@ -16,6 +16,14 @@
 */
 
 
+/*
+
+	Why DFS does not work: http://www.pvv.ntnu.no/~spaans/spec-cs.pdf
+
+	BFS solution: https://picoledelimao.github.io/blog/2015/12/06/solving-the-sliding-puzzle/
+
+*/
+
 function State(board, steps) {
 	this.board = board ? board : [];
 	this.steps = steps ? steps : [];
