@@ -15,6 +15,10 @@
 	heights = [5, 3, 1, 4, 3, 2, 1, 5];
 
 	console.log(waterLand(heights, 1, 7));
+
+	heights = [5, 3, 4, 3, 5];
+
+	console.log(waterLand(heights, 2, 3));
 */
 
 function waterLand(heights, position, count) {

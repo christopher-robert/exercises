@@ -52,61 +52,64 @@
  * @return {NestedInteger}
  */
 
- function NestedInteger() {
- 	this.num = null;
- 	this.list = [];
-
- 	this.setInteger = function(value) {
- 		this.num = value;
- 	}
-
- 	this.add = function(elem) {
- 		this.list.push(elem);
- 	}
- }
-
-var deserialize = function(s) {
-	// check the type
+function deserialize(s) {
 	if(typeof s !== 'string' || s.length === 0) {
-		return '';
+		return null;
 	}
 
-	let res = new NestedInteger();
+	let nestedInteger = new NestedInteger();
 
-	for(let i = 0, len = s.length; i < len;) {
-		if(s[i] >= '0' && s[i] <= '9' || s[i] === '-') {
-			let start = i;
+	if(s[0] === '[') {
+		let stripped = s.slice(1, s.length - 1);
+		let items = [];
+		let item = '';
 
-			while(s[i] !== ',' && i < len) {
-				i++;
+		for(let i = 0, len = stripped.length; i < len; i++) {
+			if(stripped[i] === ',') {
+				items.push(item);
+				item = '';
+			} else if(stripped[i] === '[' ) {
+				let level = 0;
+
+				while(i < len) {
+					item += stripped[i];
+
+					if(stripped[i] === '[') {
+						level++;
+					}
+
+					if(stripped[i] === ']') {
+						level--;
+					}
+
+					if(level === 0) {
+						break;
+					}
+
+					i++;
+				}
+			} else {
+				item += stripped[i];
 			}
-			res.setInteger(Number(s.slice(start, i)));
-		} else if (s[i] === '[') {
-			let start = i;
-			let level = 1;
-			i++;
-			while(level > 0 && i < len) {
-				if(s[i] === '[') {
-					level++;
-				}
-
-				if(s[i] === ']') {
-					level--;
-				}
-
-				i++;
-				let list = s.slice(start, i);
-
-				if(list.length !== 0) {
-					res.add(deserialize(list));
-				}
-			}
-
-		} else {
-			i++;
 		}
+
+		if(item !== '') {
+			items.push(item);
+		}
+
+		items.forEach(item => {
+				if(Number.isInteger(Number(item))) {
+					let newInteger = new NestedInteger();
+					
+					newInteger.setInteger(Number(item));
+					nestedInteger.add(newInteger);
+				} else {
+					nestedInteger.add(deserialize(item));
+				}
+		});
+	} else {
+		nestedInteger.setInteger(Number(s));
 	}
 
-	return res;
-    
-};
+	return nestedInteger;
+}

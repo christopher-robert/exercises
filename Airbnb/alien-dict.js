@@ -13,6 +13,15 @@
 	  "ett",
 	  "rftt"
 	]
+
+
+	let dict = [
+	  "wa",
+	  "wb",
+	  "wc",
+	  "a",
+	  "d"
+	];
 	The correct order is: "wertf".
 
 	Note:

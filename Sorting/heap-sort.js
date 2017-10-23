@@ -6,8 +6,8 @@
 	it has the advantage of a more favorable worst-case O(n log n) runtime. 
 	Heapsort is an in-place algorithm, but it is not a stable sort.
 
-	Worst-case performance	{\displaystyle O(n\log n)} O(n\log n)
-	Best-case performance	{\displaystyle O(n)} O(n)
+	Worst-case performance	{ O(n\log n)} O(n\log n)
+	Best-case performance	{\ O(n)} O(n)
 	Average performance	{\displaystyle O(n\log n)} O(n\log n)
 */
 

@@ -3,6 +3,13 @@
  * @param {string} s
  * @return {number}
  */
+ /*
+	console.log(lengthOfLongestSubstringWithK("a", 1));
+	console.log(lengthOfLongestSubstringWithK("ab", 1));
+	console.log(lengthOfLongestSubstringWithK("abcabcbb", 4));
+	console.log(lengthOfLongestSubstringWithK("aaaaaa", 0));
+	console.log(lengthOfLongestSubstringWithK("pwwkew", 3));
+ */
 var lengthOfLongestSubstring = function(str, k) {
 	if(typeof str !== 'string' || str.length === 0 || k <= 0) {
 		return 0;

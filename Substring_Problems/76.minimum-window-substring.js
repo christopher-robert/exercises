@@ -53,7 +53,7 @@ var minWindow = function(str, target) {
 			}
 			
 			if(map[str[slow]] !== undefined) {
-				if(map[str[slow]] === 0) {
+				if(map[str[slow]] >= 0) {
 					counter++;
 				}
 				map[str[slow]]++;
