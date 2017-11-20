@@ -12,6 +12,10 @@
 */
 
 /*
+	Building a heap alone would be O(n)
+*/
+
+/*
 	This is the shiftdown version
 */
 

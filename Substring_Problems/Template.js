@@ -2,7 +2,7 @@ function findSubstring(str){
 
   let map = {}:
   let counter; // check whether the substring is valid
-  let slow=0, fast=0; //two pointers, one point to tail and one  head
+  let slow=0, fast=0; //two pointers, one point to tail and one head
   let res; // the result string
 
   for() { /* initialize the hash map here */ }
@@ -12,6 +12,7 @@ function findSubstring(str){
         /* modify counter here */
     }
     map[str[fast]]--; // or ++
+    
     fast++;
 
     while(/* counter condition */){ 

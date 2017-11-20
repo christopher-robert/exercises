@@ -34,7 +34,6 @@ function heapify(arr, i) {
 
 
 /* 76. Min Window */
-
 function minWindow(str, target) {
 	if(typeof str !== 'string' || typeof target !== 'string' || str.length < target.length) {
 		return '';
@@ -64,7 +63,7 @@ function minWindow(str, target) {
 				counter--;
 			}
 			
-			map[str[fast]]--; // when map[...] is nagative, it is the duplicate ones
+			map[str[fast]]--; // when map[...] is negative, it is the duplicate ones
 		}
 
 		fast++;
@@ -187,4 +186,106 @@ function minWindow(str, target) {
 
  	return maxLength;
  }
+
+function removeDuplicates(arr) {
+	if(!Array.isArray(arr) || arr.length <= 1) {
+		return arr;
+	}
+
+    let len = arr.length;
+    let d = 1;
+
+    for(let i = 1; i < len; i++) {
+       if(arr[i] !== arr[d - 1]) {
+       		arr[d++] = arr[i];
+       }
+    }
+
+    return arr.slice(0, d);
+}
+
+function heapify(arr, size, i) {
+	let largest = i;
+
+	let left = 2 * i + 1;
+	let right = 2 * i + 2;
+
+	if(left < size && arr[left] > arr[largest]) {
+		largest = left;
+	}
+
+	if(right < size && arr[right] > arr[largest]) {
+		largest = right;
+	}
+
+	if(largest !== i) {
+		// swap largest and i
+		let temp = arr[largest];
+		arr[largest] = arr[i];
+		arr[i] = arr[largest];
+
+		heapify(arr, largest);
+	}
+}
+
+function heapSort(arr) {
+	for(let i = Math.floor((arr.length - 1) / 2 - 1); i >= 0; i--) {
+		heapify(arr, i);
+	}
+
+	for(let i = arr.length - 1; i >= 0; i--) {
+		let temp = arr[i];
+		arr[i] = arr[0];
+		arr[0] = temp;
+
+		heapify(arr, i, 0);
+	}
+}
+
+function select(arr, k) {
+	return recursionHelper(arr, 0, arr.length - 1, k - 1);
+}
+
+function recursionHelper(arr, left, right, k) {
+	if(left === right) {
+		return arr[left];
+	}
+
+	let p = partition(arr, left, right);
+
+	if(p === k) {
+		return arr[k];
+	}
+
+	if(p !== k) {
+		return recursionHelper(arr, left, p - 1, k);
+	} else {
+		return recursionHelper(arr, p + 1, right, k);
+	}
+}
+
+function partition(arr, left, right) {
+	let i = left; 
+
+	for(let j = left; j < right; j++) {
+		if(arr[i] <= arr[high]) {
+			if(i !== j) {
+				swap(arr, i , j);
+			}
+
+			i++;
+		}
+	}
+
+	swap(arr, i, right);
+
+	return i;
+}
+
+function swap(arr, i, j) {
+	let temp = arr[i];
+	arr[i] = arr[j];
+	arr[j] = temp;
+}
+
 
