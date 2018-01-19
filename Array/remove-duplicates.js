@@ -1,3 +1,4 @@
+// from sorted array
 
 function removeDuplicates(arr) {
 	if(!Array.isArray(arr) || arr.length <= 1) {
